@@ -47,7 +47,14 @@
 - ✅ All images served locally via next/image (AVIF/WebP) — no external optimization needed.
 - ✅ `.env.example` + `.gitignore` handles `.vercel`/`.env*`.
 
+## GitHub Deployment (Done)
+- ✅ Remote `origin` = `https://github.com/Jedi898/ashmaweb`
+- ✅ Authenticated as `Jedi898` via `gh auth login`
+- ✅ Pushed `master` → `origin/master` (commits `102bbb4` + `c2e46f8`)
+- ✅ Working tree clean; branch up to date with `origin/master`
+
 ## Final State
 - All routes static/SSG — ideal for Vercel edge caching.
 - Security headers enforced at 3 layers: next.config, edge proxy, vercel.json.
 - SEO complete: robots, sitemap, manifest, OG/Twitter, JSON-LD (WebSite + Person), per-page metadata, custom 404.
+- Repository live at `https://github.com/Jedi898/ashmaweb`.
