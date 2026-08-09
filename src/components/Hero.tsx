@@ -50,11 +50,11 @@ export default function Hero() {
 <img
           src="/banner.png"
           alt="Ashma Singh Thakuri Banner"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-100"
         />
-{/* Light readability gradient — keep banner clear (lightened for higher banner opacity) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/45 via-transparent to-[#0a0a0b]/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/35 via-transparent to-transparent" />
+        {/* Light readability gradient — keep banner clear (minimal dim to keep banner bold) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0a0a0b]/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/10 via-transparent to-transparent" />
         {/* Gold tint orbs */}
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-[#e8a87c]/10 rounded-full blur-[100px]" />
