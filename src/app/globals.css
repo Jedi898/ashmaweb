@@ -1,26 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Custom Theme Configuration ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #0a0a0b;
+  --color-foreground: #f5f0e8;
+  --color-cream: #f5f0e8;
+  --color-cream-muted: #c4b998;
+  --color-gold: #d4af37;
+  --color-gold-light: #e8c84a;
+  --color-gold-dark: #b8962e;
+  --color-rose-gold: #e8a87c;
+  --color-charcoal: #0a0a0b;
+  --color-charcoal-light: #1a1a1e;
+  --color-charcoal-lighter: #2a2a30;
+  --color-border-subtle: rgba(212, 175, 55, 0.15);
+  --color-border-glow: rgba(212, 175, 55, 0.3);
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─── */
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  /* Base font-scale responsive to viewport width (400px → 16px, 1440px → 17px) */
+  font-size: clamp(15px, 0.5rem + 0.6vw, 17px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  /* Prevent long-press callouts / accidental zoom on double-tap for UI regions */
+  -webkit-touch-callout: none;
 }
+
+/* ─── Safe-area helpers for notched devices ─── */
+@supports (padding: env(safe-area-inset-top)) {
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pl-safe { padding-left: env(safe-area-inset-left); }
+  .pr-safe { padding-right: env(safe-area-inset-right); }
+}
+
+/* ─── Minimum touch target (WCAG — 44px) ─── */
+.min-touch {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ─── Accessibility: respect reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e8c84a;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #f5f0e8;
+}
+
+/* ─── Glassmorphism Utilities ─── */
+.glass {
+  background: rgba(26, 26, 30, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.glass-strong {
+  background: rgba(26, 26, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #d4af37 0%, #f5e6a3 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(135deg, #d4af37, #e8c84a, #b8962e) 1;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+}
+
+/* ─── Card Hover Effects ─── */
+/* Animate ONLY transform (translateY) + shadow/border — no width/height → no
+   layout thrash. Kept under 180ms to honor the micro-interaction budget. */
+.card-hover {
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
+    border-color 0.18s ease-out;
+  will-change: transform;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* ─── Tactile Press ─── */
+/* Zero-lag baseline for pointer-driven feedback. The actual scale (0.97) is
+   driven by the Pressable motion primitive; this class only pins the
+   transform-optimized rendering context. */
+.pressable {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  user-select: none;
+}
+
+/* ─── Subtle Gradient Border ─── */
+.gradient-border {
+  position: relative;
+  background: #1a1a1e;
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Glow Effects ─── */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), 0 0 40px rgba(212, 175, 55, 0.05);
+}
+
+/* ─── Section Divider ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  margin: 0 auto;
+  max-width: 80%;
+}
+
