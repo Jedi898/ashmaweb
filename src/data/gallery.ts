@@ -85,10 +85,6 @@ const gallery1 = [
 ];
 
 const gallery2 = [
-  "Adorning%20The%20Surficial%2C%20Graduation%20Collection%20Look%201.webp",
-  "An%20Incessant%20Flow%20of%20Time%20A%20%281%29.webp",
-  "An%20Incessant%20Flow%20of%20Time%20A%20%282%29.webp",
-  "An%20Incessant%20Flow%20of%20Time%20A.webp",
   "Auto_CAD.webp",
   "Auto_CAD_%281%29.webp",
   "Identity_Card_Design.webp",

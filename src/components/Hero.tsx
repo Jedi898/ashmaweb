@@ -45,25 +45,72 @@ export default function Hero() {
       id="top"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* Banner Background */}
-      <div className="absolute inset-0 pointer-events-none">
-<img
-          src="/banner.png"
-          alt="Ashma Singh Thakuri Banner"
-          className="w-full h-full object-cover opacity-100"
+      {/* Luxury Theme Texture Background (Replaces banner.png) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Base Dark Palette */}
+        <div className="absolute inset-0 bg-[#0a0a0b]" />
+
+        {/* Haute Couture Dot / Grid Texture */}
+        <div
+          className="absolute inset-0 opacity-[0.14]"
+          style={{
+            backgroundImage: `radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#d4af37 0.75px, #0a0a0b 0.75px)`,
+            backgroundSize: `28px 28px`,
+            backgroundPosition: `0 0, 14px 14px`,
+          }}
         />
-        {/* Light readability gradient — keep banner clear (minimal dim to keep banner bold) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0a0a0b]/5" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/10 via-transparent to-transparent" />
-        {/* Gold tint orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-[#e8a87c]/10 rounded-full blur-[100px]" />
+
+        {/* Elegant Geometric Silk Line Weave */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-25"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="hero-gold-weave"
+              width="80"
+              height="80"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 80 0 L 0 80 M 0 0 L 80 80"
+                fill="none"
+                stroke="url(#weaveGrad)"
+                strokeWidth="0.5"
+              />
+              <linearGradient id="weaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#d4af37" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#e8a87c" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="#d4af37" stopOpacity="0.4" />
+              </linearGradient>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-gold-weave)" />
+        </svg>
+
+        {/* Pulsing Central Gold Glow */}
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.35, 0.5, 0.35],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-[#d4af37]/20 via-[#e8a87c]/10 to-transparent rounded-full blur-[140px]"
+        />
+
+        {/* Side Ambient Orbs */}
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#d4af37]/15 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-[#e8a87c]/15 rounded-full blur-[100px]" />
+
+        {/* Depth Vignettes */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-[#0a0a0b]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/90 via-transparent to-[#0a0a0b]/90" />
       </div>
 
-      {/* Decorative thin lines */}
+      {/* Decorative Accent Lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[15%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent" />
-        <div className="absolute bottom-[15%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent" />
+        <div className="absolute top-[15%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent" />
+        <div className="absolute bottom-[15%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent" />
       </div>
 
       <motion.div
@@ -78,16 +125,16 @@ export default function Hero() {
             {/* Badge */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-[#0a0a0b]/50 backdrop-blur-md border border-[#d4af37]/30 text-[#d4af37] text-xs sm:text-sm font-medium tracking-wider"
+              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-[#0a0a0b]/60 backdrop-blur-md border border-[#d4af37]/30 text-[#d4af37] text-xs sm:text-sm font-medium tracking-wider shadow-lg"
             >
               <Sparkles size={14} className="text-[#d4af37]" />
               Stylist for Mr. Nepal 2024
             </motion.div>
 
-{/* Headline — fluid clamp across all devices */}
+            {/* Headline */}
             <motion.h1
               variants={itemVariants}
-className="font-serif font-bold leading-[1.1] tracking-tight text-[clamp(2.25rem,6vw_+_0.5rem,6rem)]"
+              className="font-serif font-bold leading-[1.1] tracking-tight text-[clamp(2.25rem,6vw_+_0.5rem,6rem)]"
             >
               Transforming
               <br />
@@ -119,28 +166,32 @@ className="font-serif font-bold leading-[1.1] tracking-tight text-[clamp(2.25rem
               variants={itemVariants}
               className="mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
             >
-<Pressable
+              <Pressable
                 as="a"
                 href="#portfolio"
                 className="group pressable relative min-h-12 px-8 py-3.5 bg-[#d4af37] text-[#0a0a0b] font-medium tracking-wider rounded-full overflow-hidden hover:shadow-xl hover:shadow-[#d4af37]/20"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Explore Portfolio
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-[#e8c84a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-150"
-                />
+                <motion.span className="absolute inset-0 bg-gradient-to-r from-[#e8c84a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
               </Pressable>
 
               <Pressable
                 as="a"
                 href="#contact"
-className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-medium tracking-wider rounded-full overflow-hidden border border-[#d4af37]/40 backdrop-blur-md bg-[#0a0a0b]/40 hover:border-[#d4af37]/70"
+                className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-medium tracking-wider rounded-full overflow-hidden border border-[#d4af37]/40 backdrop-blur-md bg-[#0a0a0b]/40 hover:border-[#d4af37]/70"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Book Workshop / Styling
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
               </Pressable>
             </motion.div>
@@ -152,10 +203,7 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
             className="flex-1 flex flex-col items-center gap-6 w-full max-w-md mx-auto"
           >
             {/* Circular Profile Portrait */}
-            <motion.div
-              variants={itemVariants}
-              className="relative"
-            >
+            <motion.div variants={itemVariants} className="relative">
               {/* Glow behind portrait */}
               <div className="absolute -inset-6 bg-gradient-to-br from-[#d4af37]/40 via-transparent to-[#e8a87c]/25 rounded-full blur-2xl opacity-70" />
 
@@ -166,10 +214,10 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
                 className="absolute -inset-3 rounded-full border border-dashed border-[#d4af37]/50"
               />
 
-              {/* Circular Frame — fluid size (min 224px on phones → 320px desktop) */}
+              {/* Circular Frame */}
               <div className="relative w-[clamp(14rem,38vw,20rem)] h-[clamp(14rem,38vw,20rem)] rounded-full p-[4px] bg-gradient-to-br from-[#d4af37] via-[#e8a87c] to-[#d4af37] shadow-2xl shadow-black/50">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-[#0a0a0b]">
-<img
+                  <img
                     src="/profile.webp"
                     alt="Ashma Singh Thakuri"
                     className="w-full h-full object-cover"
@@ -177,8 +225,8 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
                 </div>
               </div>
 
-              {/* Floating name plate below */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap glass-strong rounded-full px-6 py-2.5 backdrop-blur-xl shadow-lg shadow-black/30">
+              {/* Floating name plate */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap glass-strong rounded-full px-6 py-2.5 backdrop-blur-xl shadow-lg shadow-black/30 border border-[#d4af37]/30">
                 <p className="font-serif text-sm sm:text-base font-bold text-[#f5f0e8]">
                   Ashma Singh Thakuri
                 </p>
@@ -195,7 +243,7 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
                 <motion.div
                   key={stat.label}
                   variants={itemVariants}
-                  className="relative p-5 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl"
+                  className="relative p-5 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl border border-[#d4af37]/20"
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-40`}
@@ -216,7 +264,7 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
             {/* Curriculum Card */}
             <motion.div
               variants={itemVariants}
-              className="w-full relative p-4 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl"
+              className="w-full relative p-4 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl border border-[#d4af37]/20"
             >
               <div className="relative z-10 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#d4af37]/20 flex items-center justify-center flex-shrink-0">
@@ -254,4 +302,3 @@ className="group pressable relative min-h-12 px-8 py-3.5 text-[#f5f0e8] font-med
     </section>
   );
 }
-
