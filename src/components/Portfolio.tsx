@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 
 const portfolioItems = [
   {

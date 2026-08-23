@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  * Edge proxy — defense-in-depth security headers applied to every route before
@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
  * NOTE: Next.js 16 renamed the `middleware` convention to `proxy`. This file
  * follows the new convention.
  */
-export default function proxy(request: NextRequest) {
+export default function proxy() {
   const response = NextResponse.next();
 
   // Restrict embedding: never allow this site inside a frame.

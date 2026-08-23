@@ -1,5 +1,5 @@
 // Convert the 5 HEIC files to WebP using heic-convert (handles iref security limits)
-import { readFileSync, writeFileSync, rmSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import convert from "heic-convert";
 

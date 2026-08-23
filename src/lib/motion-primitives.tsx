@@ -31,7 +31,6 @@ import {
 import {
   SPRING_PRESS,
   SPRING_LAYOUT,
-  SPRING_MODAL,
   EASE_OUT,
   modalVariants,
   getTriggerOrigin,

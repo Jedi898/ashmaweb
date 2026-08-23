@@ -111,7 +111,6 @@ export async function POST(request: NextRequest) {
   // submission and log it server-side. To enable real delivery, integrate a
   // provider (Resend/SendGrid/Postmark) here using server-side env vars and
   // never expose the API key to the client.
-  // eslint-disable-next-line no-console
   console.log("[contact] new submission", payload);
 
   return NextResponse.json(

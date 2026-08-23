@@ -30,9 +30,9 @@ export default function Home() {
         <div className="section-divider" />
         <Education />
         <div className="section-divider" />
-        <Portfolio />
-        <div className="section-divider" />
         <Gallery />
+        <div className="section-divider" />
+        <Portfolio />
         <div className="section-divider" />
         <Contact />
         <Footer />

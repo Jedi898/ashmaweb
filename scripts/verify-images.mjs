@@ -1,4 +1,4 @@
-import { readdirSync, existsSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import { readFileSync } from "node:fs";
 
 // Read the data file

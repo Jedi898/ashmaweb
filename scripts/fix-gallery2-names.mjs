@@ -24,8 +24,8 @@ async function main() {
     // This means the actual bytes on disk are: C3 A2 E2 82 AC E2 84 A2
 
     // Detect via latin1 interpretation: "â€™"
-    if (name.includes("\u00e2\u20ac\u2122")) {
-      const newName = name.replaceAll("\u00e2\u20ac\u2122", properApostrophe);
+    if (name.includes(mojibakeApostrophe)) {
+      const newName = name.replaceAll(mojibakeApostrophe, properApostrophe);
       const oldPath = join(dir, name);
       const newPath = join(dir, newName);
 
@@ -44,7 +44,7 @@ async function main() {
 
   console.log(`\n=== Verification ===`);
   const remaining = (await readdir(dir)).filter((n) =>
-    n.includes("\u00e2\u20ac\u2122")
+    n.includes(mojibakeApostrophe)
   );
   const total = (await readdir(dir)).length;
   console.log(`Total files in public/gallery2: ${total}`);

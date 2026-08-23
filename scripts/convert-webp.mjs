@@ -12,9 +12,6 @@ const personalFiles = ["banner.png", "profile.JPG", "about.JPEG"];
 // Progressive WebP saves 50-70% vs JPEG/PNG at near-identical quality
 const WEBP_QUALITY = 82;
 
-// Supported source extensions
-const SUPPORTED = new Set([".jpg", ".jpeg", ".png", ".heic", ".heif"]);
-
 let converted = 0;
 let skipped = 0;
 let failed = [];
