@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ashmasinghthakuri.com";
@@ -148,16 +161,9 @@ export default function RootLayout({
       className="h-full scroll-smooth"
       data-scroll-behavior="smooth"
     >
-      <head>
-        {/* Early connection to the Google Fonts origin reduces first paint latency. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className="min-h-full bg-[#0a0a0b] text-[#f5f0e8] font-sans antialiased">
+      <body
+        className={`${inter.variable} ${playfairDisplay.variable} min-h-full bg-[#0a0a0b] text-[#f5f0e8] font-sans antialiased`}
+      >
         {children}
         <script
           type="application/ld+json"

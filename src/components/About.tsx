@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Sparkles, GraduationCap, Briefcase, Heart } from "lucide-react";
 
 const containerVariants = {
@@ -63,12 +64,14 @@ export default function About() {
             {/* Frame */}
             <motion.div
               variants={itemVariants}
-              className="relative rounded-[2rem] overflow-hidden border border-[#d4af37]/30 shadow-2xl shadow-black/40"
+              className="relative aspect-[4/5] sm:aspect-[3/4] rounded-[2rem] overflow-hidden border border-[#d4af37]/30 shadow-2xl shadow-black/40"
             >
-<img
+              <Image
                 src="/about.webp"
                 alt="Ashma Singh Thakuri — About"
-                className="w-full h-auto object-cover aspect-[4/5] sm:aspect-[3/4]"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 via-transparent to-transparent" />

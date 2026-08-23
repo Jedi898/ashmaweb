@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Sparkles, Palette, Award } from "lucide-react";
 import { Pressable } from "@/lib/motion-primitives";
 
@@ -216,11 +217,14 @@ export default function Hero() {
 
               {/* Circular Frame */}
               <div className="relative w-[clamp(14rem,38vw,20rem)] h-[clamp(14rem,38vw,20rem)] rounded-full p-[4px] bg-gradient-to-br from-[#d4af37] via-[#e8a87c] to-[#d4af37] shadow-2xl shadow-black/50">
-                <div className="w-full h-full rounded-full overflow-hidden border-4 border-[#0a0a0b]">
-                  <img
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#0a0a0b]">
+                  <Image
                     src="/profile.webp"
                     alt="Ashma Singh Thakuri"
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 60vw, 320px"
+                    className="object-cover"
                   />
                 </div>
               </div>

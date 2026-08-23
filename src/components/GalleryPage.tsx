@@ -132,29 +132,6 @@ export default function GalleryPage({ gallery }: { gallery: Gallery }) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [closeLightbox, navigate]);
 
-  /* Preload lightbox neighbors so navigation is instant */
-  useEffect(() => {
-    if (activeIndex === null) return;
-    const len = gallery.images.length;
-    const toPreload = [
-      gallery.images[(activeIndex - 1 + len) % len].src,
-      gallery.images[(activeIndex + 1) % len].src,
-    ];
-    for (const src of toPreload) {
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "image";
-      link.href = src;
-      document.head.appendChild(link);
-    }
-    const links = document.head.querySelectorAll(
-      'link[rel="preload"][as="image"]'
-    );
-    if (links.length > 8) {
-      for (let i = 0; i < links.length - 8; i++) links[i].remove();
-    }
-  }, [activeIndex, gallery.images]);
-
   /* Cleanup body scroll lock on unmount */
   useEffect(() => {
     return () => {
@@ -267,7 +244,7 @@ const activeImage =
                     placeholder={info ? "blur" : undefined}
                     blurDataURL={info?.blurDataUrl}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    loading={index < 6 ? "eager" : "lazy"}
+                    loading={index === 0 ? "eager" : "lazy"}
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:brightness-90"
                   />
 
@@ -307,6 +284,25 @@ const activeImage =
       <AnimatePresence>
         {open && activeImage && (
           <>
+            <div className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0">
+              {[
+                gallery.images[
+                  (activeIndex! - 1 + gallery.images.length) % gallery.images.length
+                ],
+                gallery.images[(activeIndex! + 1) % gallery.images.length],
+              ].map((image) => (
+                <Image
+                  key={image.src}
+                  src={image.src}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 1100px) 92vw, 1100px"
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+
             {/* Backdrop — opacity fades proportionally to drag distance */}
             <motion.div
               key="backdrop"

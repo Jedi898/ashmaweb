@@ -93,7 +93,6 @@ export default function Gallery() {
                       src={gallery.cover}
                       alt={gallery.coverAlt}
                       fill
-                      priority
                       placeholder={coverInfo ? "blur" : undefined}
                       blurDataURL={coverInfo?.blurDataUrl}
                       sizes="(max-width: 768px) 100vw, 50vw"
