@@ -137,11 +137,9 @@ export default function Hero() {
               variants={itemVariants}
               className="font-serif font-bold leading-[1.1] tracking-tight text-[clamp(2.25rem,6vw_+_0.5rem,6rem)]"
             >
-              Transforming
+              Ashma Singh Thakuri
               <br />
-              <span className="gold-gradient-text">Inspiration</span>
-              <br />
-              into Wearable Art
+              <span className="gold-gradient-text">Fashion & Artistry</span>
             </motion.h1>
 
             {/* Sub-headline */}

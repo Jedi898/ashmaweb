@@ -68,7 +68,7 @@ export default function About() {
             >
               <Image
                 src="/about.webp"
-                alt="Ashma Singh Thakuri — About"
+                alt="Ashma Singh Thakuri, fashion educator and digital illustrator"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

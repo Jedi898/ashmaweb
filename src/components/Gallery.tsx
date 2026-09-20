@@ -91,7 +91,7 @@ export default function Gallery() {
                     {/* Cover Image */}
                     <Image
                       src={gallery.cover}
-                      alt={gallery.coverAlt}
+                      alt={`${gallery.coverAlt} by Ashma Singh Thakuri`}
                       fill
                       placeholder={coverInfo ? "blur" : undefined}
                       blurDataURL={coverInfo?.blurDataUrl}

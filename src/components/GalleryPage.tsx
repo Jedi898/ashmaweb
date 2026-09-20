@@ -239,7 +239,7 @@ const activeImage =
                 >
                   <Image
                     src={info?.thumb ?? image.src}
-                    alt={image.name}
+                    alt={`${image.name} by Ashma Singh Thakuri`}
                     fill
                     placeholder={info ? "blur" : undefined}
                     blurDataURL={info?.blurDataUrl}
