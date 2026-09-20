@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Ashma Singh Thakuri",
   },
   description:
-    "Portfolio of Ashma Singh Thakuri — Premier Fashion Educator, Digital Illustrator, and Editorial Stylist based in Nepal. Stylist for Mr. Nepal 2024 & Faculty at IEC College of Art & Fashion.",
+    "Ashma Singh Thakuri (also known as Ashma Singh) is a Nepal-based fashion educator, digital illustrator, and editorial stylist. She teaches fashion design at IEC College of Art & Fashion and led styling presentations for Mr. Nepal 2024.",
   keywords: [
     "fashion educator",
     "fashion illustrator",
@@ -42,6 +42,8 @@ export const metadata: Metadata = {
     "IEC College",
     "fashion design",
     "digital illustration",
+    "Ashma Singh",
+    "Mr. Nepal 2024 stylist",
   ],
   applicationName: "Ashma Singh Thakuri",
   authors: [{ name: "Ashma Singh Thakuri" }],
@@ -69,7 +71,7 @@ export const metadata: Metadata = {
     siteName: "Ashma Singh Thakuri",
     title: "Ashma Singh Thakuri | Fashion Portfolio",
     description:
-      "Transforming Inspiration into Wearable Art — Fashion Educator, Digital Illustrator & Editorial Stylist.",
+      "Ashma Singh Thakuri is a Nepal-based Fashion Educator, Digital Illustrator, and Editorial Stylist.",
     images: [
       {
         url: "/banner.png",
@@ -83,7 +85,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ashma Singh Thakuri | Fashion Portfolio",
     description:
-      "Transforming Inspiration into Wearable Art — Fashion Educator, Digital Illustrator & Editorial Stylist.",
+      "Ashma Singh Thakuri is a Nepal-based Fashion Educator, Digital Illustrator, and Editorial Stylist.",
     images: ["/banner.png"],
   },
   icons: {
@@ -123,18 +125,63 @@ const jsonLd = {
       },
     },
     {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      name: "About Ashma Singh Thakuri",
+      description:
+        "Professional profile of Ashma Singh Thakuri, including her fashion education experience, styling work, achievements, and academic background.",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#person` },
+      mainEntity: { "@id": `${SITE_URL}/#person` },
+      inLanguage: "en",
+    },
+    {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: "Ashma Singh Thakuri",
+      alternateName: "Ashma Singh",
+      givenName: "Ashma",
+      familyName: "Singh Thakuri",
       jobTitle: ["Fashion Educator", "Digital Illustrator", "Editorial Stylist"],
       description:
-        "Premier Fashion Educator, Digital Illustrator, and Editorial Stylist based in Nepal. Official Stylist for Mr. Nepal 2024 & Faculty at IEC College of Art & Fashion.",
+        "Ashma Singh Thakuri is a Nepal-based Fashion Educator, Digital Illustrator, and Editorial Stylist. She is a Fashion Design Instructor at IEC College of Art & Fashion and was the Official Styling Presentation Leader for Mr. Nepal 2024.",
       url: SITE_URL,
       image: `${SITE_URL}/profile.webp`,
       nationality: "Nepal",
+      homeLocation: { "@type": "Country", name: "Nepal" },
+      worksFor: {
+        "@type": "CollegeOrUniversity",
+        name: "IEC College of Art & Fashion",
+      },
+      alumniOf: [
+        {
+          "@type": "CollegeOrUniversity",
+          name: "IEC College of Art & Fashion",
+          sameAs: "https://iec.edu.np/",
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          name: "Limkokwing University of Creative Technology",
+        },
+      ],
       sameAs: [
         "https://instagram.com/ashmasinght",
         "https://t.me/+9779707498890",
+      ],
+      hasOccupation: [
+        {
+          "@type": "Occupation",
+          name: "Fashion Design Instructor",
+          occupationLocation: { "@type": "Country", name: "Nepal" },
+          skills: "Fashion design, fashion illustration, garment design, and portfolio development",
+        },
+        {
+          "@type": "Occupation",
+          name: "Editorial Stylist",
+          occupationLocation: { "@type": "Country", name: "Nepal" },
+          skills: "Editorial styling, wardrobe direction, and visual storytelling",
+        },
       ],
       knowsAbout: [
         "Fashion Illustration",
@@ -146,6 +193,12 @@ const jsonLd = {
         "Menswear",
         "Kidswear",
       ],
+      subjectOf: {
+        "@type": "CreativeWork",
+        name: "Official styling presentations for Mr. Nepal 2024",
+        description:
+          "Ashma Singh Thakuri led official styling presentations and creative wardrobe direction for the Mr. Nepal 2024 platform.",
+      },
     },
   ],
 };
@@ -167,7 +220,9 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
       </body>
     </html>

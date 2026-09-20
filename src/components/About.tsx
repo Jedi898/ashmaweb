@@ -116,7 +116,7 @@ export default function About() {
           >
             <motion.div variants={itemVariants}>
               <span className="text-[#d4af37] text-sm font-medium tracking-[0.2em] uppercase">
-                About Me
+                About Ashma Singh Thakuri
               </span>
 <h2 className="mt-3 font-serif font-bold text-[#f5f0e8] leading-tight text-[clamp(1.75rem,4vw,3rem)]">
                 A Passion for Fashion,{" "}
@@ -130,12 +130,12 @@ export default function About() {
               variants={itemVariants}
               className="mt-6 text-base sm:text-lg text-[#c4b998] font-light leading-relaxed"
             >
-              Based in Nepal, I am a Fashion Educator, Digital Illustrator, and
-              Editorial Stylist dedicated to transforming inspiration into
-              wearable art. As faculty at IEC College of Art & Fashion and the
-              official stylist for Mr. Nepal 2024, I blend academic rigor with
-              editorial creativity to shape the next generation of fashion
-              talent.
+              Ashma Singh Thakuri, also known as Ashma Singh, is a Nepal-based
+              Fashion Educator, Digital Illustrator, and Editorial Stylist.
+              She is a Fashion Design Instructor at IEC College of Art &
+              Fashion and the Official Styling Presentation Leader for Mr.
+              Nepal 2024. Her work combines academic fashion training with
+              editorial creativity and wearable art.
             </motion.p>
 
             <motion.p
