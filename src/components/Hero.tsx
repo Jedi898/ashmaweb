@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Sparkles, Palette, Award } from "lucide-react";
 import { Pressable } from "@/lib/motion-primitives";
@@ -41,10 +42,35 @@ const statCards = [
 ];
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 120, damping: 20, mass: 0.7 });
+  const springY = useSpring(pointerY, { stiffness: 120, damping: 20, mass: 0.7 });
+  const profileX = useTransform(springX, [-1, 1], [-14, 14]);
+  const profileY = useTransform(springY, [-1, 1], [-10, 10]);
+  const profileTiltX = useTransform(springX, [-1, 1], [-3, 3]);
+  const profileTiltY = useTransform(springY, [-1, 1], [3, -3]);
+  const beamX = useTransform(springX, [-1, 1], ["-12%", "12%"]);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (prefersReducedMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width * 2 - 1);
+    pointerY.set((event.clientY - bounds.top) / bounds.height * 2 - 1);
+  };
+
+  const resetPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
     <section
       id="top"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetPointer}
     >
       {/* Luxury Theme Texture Background (Replaces banner.png) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -106,6 +132,14 @@ export default function Hero() {
         {/* Depth Vignettes */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-[#0a0a0b]/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/90 via-transparent to-[#0a0a0b]/90" />
+
+        {/* A slow editorial light sweep gives the hero a living, tactile surface. */}
+        <motion.div
+          style={{ x: beamX }}
+          animate={prefersReducedMotion ? undefined : { opacity: [0, 0.35, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -inset-y-20 left-1/3 w-24 rotate-[18deg] bg-gradient-to-r from-transparent via-[#f5e6a3]/10 to-transparent blur-2xl"
+        />
       </div>
 
       {/* Decorative Accent Lines */}
@@ -202,7 +236,20 @@ export default function Hero() {
             className="flex-1 flex flex-col items-center gap-6 w-full max-w-md mx-auto"
           >
             {/* Circular Profile Portrait */}
-            <motion.div variants={itemVariants} className="relative">
+            <motion.div
+              variants={itemVariants}
+              style={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      x: profileX,
+                      y: profileY,
+                      rotateX: profileTiltY,
+                      rotateY: profileTiltX,
+                    }
+              }
+              className="relative [perspective:1200px]"
+            >
               {/* Glow behind portrait */}
               <div className="absolute -inset-6 bg-gradient-to-br from-[#d4af37]/40 via-transparent to-[#e8a87c]/25 rounded-full blur-2xl opacity-70" />
 
