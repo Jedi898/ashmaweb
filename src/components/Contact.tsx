@@ -40,6 +40,25 @@ const contactLinks = [
   },
 ];
 
+const TELEGRAM_NUMBER = "9779707498890";
+
+function getTelegramUrl(form: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}) {
+  const text = [
+    `New website inquiry from ${form.name}`,
+    `Email: ${form.email}`,
+    `Subject: ${form.subject}`,
+    "",
+    form.message,
+  ].join("\n");
+
+  return `https://t.me/+${TELEGRAM_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -65,6 +84,7 @@ export default function Contact() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [telegramUrl, setTelegramUrl] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -97,6 +117,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       }
 
       setStatus("sent");
+  const nextTelegramUrl = getTelegramUrl(formState);
+  setTelegramUrl(nextTelegramUrl);
+  window.open(nextTelegramUrl, "_blank", "noopener,noreferrer");
       setTimeout(() => {
         setStatus("idle");
         setFormState({ name: "", email: "", subject: "", message: "" });
@@ -287,6 +310,19 @@ const handleSubmit = async (e: React.FormEvent) => {
                     className="absolute inset-0 bg-gradient-to-r from-[#e8c84a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-150"
                   />
                 </Pressable>
+                {status === "sent" && telegramUrl && (
+                  <p className="text-center text-xs text-[#c4b998]">
+                    Telegram did not open?{" "}
+                    <a
+                      href={telegramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#d4af37] underline underline-offset-4 hover:text-[#f5e6a3]"
+                    >
+                      Continue in Telegram
+                    </a>
+                  </p>
+                )}
               </div>
             </form>
           </motion.div>
