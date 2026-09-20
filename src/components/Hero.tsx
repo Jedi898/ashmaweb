@@ -292,7 +292,7 @@ export default function Hero() {
                 <motion.div
                   key={stat.label}
                   variants={itemVariants}
-                  className="relative p-5 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl border border-[#d4af37]/20"
+                  className="relativ                  master...origin/master [ahead 3]                  master...origin/master [ahead 3]e p-5 rounded-2xl overflow-hidden glass-strong card-hover backdrop-blur-xl border border-[#d4af37]/20"
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-40`}
